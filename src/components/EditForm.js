@@ -41,7 +41,8 @@ const EditForm = (props) => {
 		handleEditCancel();
 	}
 
-	return (<FormContainer onSubmit={handleSubmit}>
+	return (
+	<FormContainer onSubmit={handleSubmit}>
 		<h3>Edit Article</h3>
 		<div>
 			<label>Headline</label>
@@ -59,7 +60,7 @@ const EditForm = (props) => {
 			<label>Body</label>
 			<input value={article.body} id="body" name="body" onChange={handleChange} />
 		</div>
-		<Button id="editButton">Edit Article</Button>
+		<Button id="editButton" onClick={handleSubmit}>Edit Article</Button>
 		<Button onClick={handleCancel}>Cancel</Button>
 	</FormContainer>);
 }
