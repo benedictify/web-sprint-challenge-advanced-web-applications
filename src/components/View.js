@@ -5,43 +5,43 @@ import Article from './Article';
 import EditForm from './EditForm';
 
 const View = (props) => {
-    const [articles, setArticles] = useState([]);
-    const [editing, setEditing] = useState(false);
-    const [editId, setEditId] = useState();
+	const [articles, setArticles] = useState([]);
+	const [editing, setEditing] = useState(false);
+	const [editId, setEditId] = useState();
 
-    const handleDelete = (id) => {
-    }
+	const handleDelete = (id) => {
+	}
 
-    const handleEdit = (article) => {
-    }
+	const handleEdit = (article) => {
+	}
 
-    const handleEditSelect = (id)=> {
-        setEditing(true);
-        setEditId(id);
-    }
+	const handleEditSelect = (id) => {
+		setEditing(true);
+		setEditId(id);
+	}
 
-    const handleEditCancel = ()=>{
-        setEditing(false);
-    }
+	const handleEditCancel = () => {
+		setEditing(false);
+	}
 
-    return(<ComponentContainer>
-        <HeaderContainer>View Articles</HeaderContainer>
-        <ContentContainer flexDirection="row">
-            <ArticleContainer>
-                {
-                    articles.map(article => {
-                        return <ArticleDivider key={article.id}>
-                            <Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect}/>
-                        </ArticleDivider>
-                    })
-                }
-            </ArticleContainer>
-            
-            {
-                editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
-            }
-        </ContentContainer>
-    </ComponentContainer>);
+	return (<ComponentContainer>
+		<HeaderContainer>View Articles</HeaderContainer>
+		<ContentContainer flexDirection="row">
+			<ArticleContainer>
+				{
+					articles.map(article => {
+						return <ArticleDivider key={article.id}>
+							<Article key={article.id} article={article} handleDelete={handleDelete} handleEditSelect={handleEditSelect} />
+						</ArticleDivider>
+					})
+				}
+			</ArticleContainer>
+
+			{
+				editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel} />
+			}
+		</ContentContainer>
+	</ComponentContainer>);
 }
 
 export default View;

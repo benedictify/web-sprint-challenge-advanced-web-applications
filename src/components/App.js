@@ -10,17 +10,17 @@ import Login from './Login';
 import Logout from './Logout';
 
 const App = () => {
-  return (
-    <AppContainer>
-      <LambdaHeader/>
-      <Header/>
-      <RouteContainer>
-        <Route exact path="/">
-          <Login/>
-        </Route>          
-      </RouteContainer>
-    </AppContainer>
-  )
+	return (
+		<AppContainer>
+			<LambdaHeader />
+			<Header />
+			<RouteContainer>
+				<Route exact path="/">
+					<Login />
+				</Route>
+			</RouteContainer>
+		</AppContainer>
+	)
 }
 
 export default App;

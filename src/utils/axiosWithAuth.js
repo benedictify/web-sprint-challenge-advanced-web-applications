@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const axiosWithAuth = ()=> {
-    
+const axiosWithAuth = () => {
+
 }
 
 export default axiosWithAuth;

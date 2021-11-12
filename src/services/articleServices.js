@@ -1,6 +1,6 @@
 
 
-const articleService = ()=> {
+const articleService = () => {
 }
 
 export default articleService;

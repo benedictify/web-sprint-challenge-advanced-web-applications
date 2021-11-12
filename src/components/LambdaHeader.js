@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 
 const LambdaHeader = () => {
-    return(
-    <HeaderStyle>
-      <img width="40" src="https://i.ibb.co/8cX51NC/Lambda-Logo-Red.png"/>
-      <div>Sprint Challenge 3.3</div>
-    </HeaderStyle>);
+	return (
+		<HeaderStyle>
+			<img width="40" src="https://i.ibb.co/8cX51NC/Lambda-Logo-Red.png" />
+			<div>Sprint Challenge 3.3</div>
+		</HeaderStyle>);
 }
 
 export default LambdaHeader;
