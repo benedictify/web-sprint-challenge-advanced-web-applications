@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
-const Login = (props) => {
-	const { setToken } = props;
-	const [user, setUser] = useState({
-		name: 'Lambda',
-		pw: 'School'
-	})
+const Login = () => {
+	const history = useHistory();
+	const [error, setError] = useState("");
+	const [credentials, setCredentials] = useState({
+		username: 'Lambda',
+		password: 'School'
+	});
 
-	const { push } = useHistory();
-
-	const loginSubmit = (event) => {
+	const submitHandler = (event) => {
 		event.preventDefault();
 
-		push('/view')
-	}
+		axios.post('http://localhost:5000/api/login', credentials)
+			.then(response => {
+				localStorage.setItem('token', response.data.token);
 
-	const inputChange = () => {
+				history.push('/view');
+			})
+			.catch(err => {
+				setError(err);
+			});
+	};
 
-	}
+	const changeHandler = (event) => {
+		setCredentials({
+			...credentials,
+			[event.target.name]: event.target.value
+		})
+	};
 
 	return (
 		<ComponentContainer>
@@ -28,24 +39,30 @@ const Login = (props) => {
 				<h2>Please enter your account information.</h2>
 			</ModalContainer>
 
-			<FormGroup>
+			<FormGroup onSubmit={submitHandler}>
 				<Label>Username
 					<Input
 						type="text"
 						name="username"
-						value={user.name}
-						onChange={inputChange}
+						id="username"
+						placeholder="Username"
+						value={credentials.username}
+						onChange={changeHandler}
 					/>
 				</Label>
 				<Label>Password
 					<Input
-						type="password"
+						type="text"
 						name="password"
-						value={user.pw}
-						onChange={inputChange}
+						id="password"
+						placeholder="Password"
+						value={credentials.password}
+						onChange={changeHandler}
 					/>
 				</Label>
-				<Button onClick={loginSubmit}>Log in</Button>
+				<Button id="submit">Log in</Button>
+
+				{error && <p id="error">{error}</p>}
 			</FormGroup>
 
 		</ComponentContainer>);
@@ -54,12 +71,9 @@ const Login = (props) => {
 export default Login;
 
 //Task List
-//1. Build login form DOM from scratch, making use of styled components if needed. Make sure the username input has id="username" and the password input as id="password".
-//2. Add in a p tag with the id="error" under the login form for use in error display.
-//3. Add in necessary local state to support login form and error display.
-//4. When login form is submitted, make an http call to the login route. Save the auth token on a successful response and redirect to view page.
+
 //5. If the response is not successful, display an error statement. **a server provided error message can be found in ```err.response.data```**
-//6. MAKE SURE TO ADD id="username", id="password", id="error" AND id="submit" TO THE APPROPRIATE DOM ELEMENTS. YOUR AUTOTESTS WILL FAIL WITHOUT THEM.
+
 
 const ComponentContainer = styled.div`
 	height: 70%;
@@ -68,6 +82,7 @@ const ComponentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 `
+
 const ModalContainer = styled.div`
 	width: 500px;
 	background: white;
@@ -75,19 +90,23 @@ const ModalContainer = styled.div`
 	text-align: center;
 	margin-top: 7.5rem;
 `
+
 const Label = styled.label`
 	display: block;
 	text-align: left;
 	font-size: 1.5rem;
 `
+
 const FormGroup = styled.form`
 	padding:1rem;
 `
+
 const Input = styled.input`
 	font-size: 1rem;
 	padding: 1rem 0;
 	width: 100%;
 `
+
 const Button = styled.button`
 	padding: 1rem;
 	width: 100%;

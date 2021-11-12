@@ -10,8 +10,6 @@ import Login from './Login';
 import Logout from './Logout';
 
 const App = () => {
-	const [token, setToken] = useState('');
-
 	return (
 		<AppContainer>
 			<LambdaHeader />
@@ -19,14 +17,14 @@ const App = () => {
 
 			<RouteContainer>
 				<Route exact path="/">
-					<Login />
+					<Redirect to="/login" />
 				</Route>
 				<Route exact path="/login">
 					<Login />
 				</Route>
 
-				<PrivateRoute exact path="/view" token={token} component={View} />
-				<PrivateRoute exact path="/logout" token={token} component={Logout} />
+				<PrivateRoute path="/view" component={View} />
+				<PrivateRoute path="/logout" component={Logout} />
 			</RouteContainer>
 
 		</AppContainer>
