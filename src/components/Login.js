@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Login = () => {
 	const history = useHistory();
-	const [error, setError] = useState("");
+	const [error, setError] = useState('')
 	const [credentials, setCredentials] = useState({
 		username: 'Lambda',
 		password: 'School'
@@ -21,7 +21,7 @@ const Login = () => {
 				history.push('/view');
 			})
 			.catch(err => {
-				setError(err);
+				setError(err)
 			});
 	};
 
@@ -60,7 +60,7 @@ const Login = () => {
 						onChange={changeHandler}
 					/>
 				</Label>
-				<Button id="submit">Log in</Button>
+				<Button type="submit" id="submit">Log in</Button>
 
 				{error && <p id="error">{error}</p>}
 			</FormGroup>
