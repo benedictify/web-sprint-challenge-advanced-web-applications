@@ -20,8 +20,8 @@ const Login = () => {
 
 				history.push('/view');
 			})
-			.catch(err => {
-				setError(err)
+			.catch(error => {
+				setError(error.response.data.error)
 			});
 	};
 
