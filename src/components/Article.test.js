@@ -23,6 +23,14 @@ const testArticle = {
 	body: "article body"
 }
 
+const artNoAuthor = {
+	id: "abc",
+	headline: "headline",
+	author: "",
+	summary: "summary",
+	body: "article body"
+}
+
 test('renders component without errors', () => {
 	render(<Article article={initialArticle} handleDelete={() => { }} handleEditSelect={() => { }} />);
 });
@@ -41,8 +49,13 @@ test('renders headline, author from the article when passed in through props', (
 	expect(body).toBeInTheDocument();
 });
 
-// test('renders "Associated Press" when no author is given', ()=> {
-// });
+test('renders "Associated Press" when no author is given', ()=> {
+	render(<Article article={artNoAuthor} />);
+
+	const author = screen.queryByText(/Associated Press/i)
+
+	expect(author).toBeInTheDocument();
+});
 
 test('executes handleDelete when the delete button is pressed', ()=> {
 	const handleDeleteTestFunc = jest.fn()
