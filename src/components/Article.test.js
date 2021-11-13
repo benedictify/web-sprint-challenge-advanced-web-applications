@@ -15,19 +15,19 @@ const initialArticle = {
 	body: ""
 };
 
+const testArticle = {
+	id: "abc",
+	headline: "headline",
+	author: "author",
+	summary: "summary",
+	body: "article body"
+}
+
 test('renders component without errors', () => {
 	render(<Article article={initialArticle} handleDelete={() => { }} handleEditSelect={() => { }} />);
 });
 
 test('renders headline, author from the article when passed in through props', ()=> {
-	const testArticle = {
-		id: "abc",
-		headline: "headline",
-		author: "author",
-		summary: "summary",
-		body: "article body"
-	}
-
 	render(<Article article={testArticle} />)
 
 	const headline = screen.queryByText(/headline/i);
@@ -44,5 +44,14 @@ test('renders headline, author from the article when passed in through props', (
 // test('renders "Associated Press" when no author is given', ()=> {
 // });
 
-// test('executes handleDelete when the delete button is pressed', ()=> {
-// });
+test('executes handleDelete when the delete button is pressed', ()=> {
+	const handleDeleteTestFunc = jest.fn()
+
+	render(<Article article={testArticle} handleDelete={handleDeleteTestFunc}/>);
+
+	const button = screen.queryByText(/delete/i);
+
+	userEvent.click(button);
+
+	expect(handleDeleteTestFunc).toHaveBeenCalled()
+});
