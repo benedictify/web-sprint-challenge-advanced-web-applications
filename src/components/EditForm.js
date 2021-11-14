@@ -15,10 +15,10 @@ const EditForm = (props) => {
 	const { handleEdit, handleEditCancel, editId } = props;
 
 	useEffect(() => {
-		axiosWithAuth() // get article info from server with article id
+		axiosWithAuth()
 			.get(`/articles/${editId}`)
 			.then(response => {
-				setArticle(response.data); // save article info to Form state
+				setArticle(response.data);
 			})
 			.catch(error => console.log(error));
 	})

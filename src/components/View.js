@@ -28,8 +28,8 @@ const View = (props) => {
 		axiosWithAuth()
 			.put(`/articles/${article.id}`, article)
 			.then(response => {
-				setEditing(false);
 				setArticles(response.data);
+				setEditing(false);
 			})
 			.catch(error => console.log(error));
 	}
