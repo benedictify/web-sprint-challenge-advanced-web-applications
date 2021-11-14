@@ -17,9 +17,9 @@ const View = (props) => {
 
 	const handleDelete = (id) => {
 		axiosWithAuth()
-			.get(`/articles/${id}`)
+			.delete(`/articles/${id}`)
 			.then(response => {
-				setArticles(articles.filter(element => element.id !== response.data.id));
+				setArticles(response.data);
 			})
 			.catch(error => console.log(error))
 	}
@@ -76,12 +76,10 @@ const HeaderContainer = styled.h1`
     background: black;
     color: white;
 `
-
 const ArticleDivider = styled.div`
     border-bottom: 1px solid black;
     padding: 1em;
 `
-
 const ComponentContainer = styled.div`
     display:flex;
     width: 80%;
@@ -89,12 +87,10 @@ const ComponentContainer = styled.div`
     justify-content: center;
     
 `
-
 const ContentContainer = styled.div`
     display: flex;
     flex-direction: ${props => props.flexDirection};
 `
-
 const ArticleContainer = styled.div`
     background: grey;
 `;
