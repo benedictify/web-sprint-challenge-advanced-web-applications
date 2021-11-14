@@ -13,6 +13,8 @@ const initialArticle = {
 const EditForm = (props) => {
 	const [article, setArticle] = useState(initialArticle);
 	const { handleEdit, handleEditCancel, editId } = props;
+	// handleEdit: submits the http request to update the article on the server
+	// handleEditCancel: on clicking Cancel, sets editing in View to false.
 
 	useEffect(() => {
 		axiosWithAuth()
@@ -21,9 +23,10 @@ const EditForm = (props) => {
 				setArticle(response.data);
 			})
 			.catch(error => console.log(error));
-	})
+	}, [])
 
 	const handleChange = (e) => {
+		console.log('change event')
 		setArticle({
 			...article,
 			[e.target.name]: e.target.value
